@@ -8,7 +8,7 @@
 
 <div align="center">
 🌱 I’m currently learning **.net 8 ** <br/>
-💬 Ask me about **Asp.net, Asp.net MVC,.net5,.net6  c#, Sql Server,  angular,REST API, Node.js, React, MySql... or anything [here](https://github.com/ManashDholey/ManashDholey/issues)**
+💬 Ask me about **Asp.net, Asp.net MVC,.net5,.net6,.net8,.net10    c#, Sql Server,  angular,REST API, Node.js, React, MySql... or anything [here](https://github.com/ManashDholey/ManashDholey/issues)**
 
  </div>
 <br/>
