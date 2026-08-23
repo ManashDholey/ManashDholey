@@ -8,12 +8,6 @@ on:
     branches:
       - main
 
-# NOTE: The README now uses direct github-readme-stats.vercel.app image URLs,
-# so this workflow is optional. Use it only if you'd rather commit static SVGs
-# into the repo (e.g. to avoid the public API's rate limits/downtime), and in
-# that case point the README's stats/top-langs <img> src back to profile/stats.svg
-# and profile/top-langs.svg.
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,21 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate stats card
-        uses: anuraghazra/github-readme-stats@v1
-        with:
-          card: stats
-          options: username=ManashDholey&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10
-          path: profile/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch stats card
+        run: |
+          mkdir -p profile
+          curl -sf "https://github-readme-stats.vercel.app/api?username=ManashDholey&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" -o profile/stats.svg
 
-      - name: Generate top languages card
-        uses: anuraghazra/github-readme-stats@v1
-        with:
-          card: top-langs
-          options: username=ManashDholey&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats
-          path: profile/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch top languages card
+        run: |
+          curl -sf "https://github-readme-stats.vercel.app/api/top-langs/?username=ManashDholey&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" -o profile/top-langs.svg
 
       - name: Commit cards
         run: |
