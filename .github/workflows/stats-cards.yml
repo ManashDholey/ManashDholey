@@ -1,0 +1,47 @@
+name: Update Stats Cards
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # regenerates once a day at midnight UTC
+  workflow_dispatch: {}    # lets you trigger it manually from the Actions tab
+  push:
+    branches:
+      - main
+
+# NOTE: The README now uses direct github-readme-stats.vercel.app image URLs,
+# so this workflow is optional. Use it only if you'd rather commit static SVGs
+# into the repo (e.g. to avoid the public API's rate limits/downtime), and in
+# that case point the README's stats/top-langs <img> src back to profile/stats.svg
+# and profile/top-langs.svg.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate stats card
+        uses: anuraghazra/github-readme-stats@v1
+        with:
+          card: stats
+          options: username=ManashDholey&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate top languages card
+        uses: anuraghazra/github-readme-stats@v1
+        with:
+          card: top-langs
+          options: username=ManashDholey&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats
+          path: profile/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit cards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add profile/
+          git diff --staged --quiet || git commit -m "Update stats cards"
+          git push
