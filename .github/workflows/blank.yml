@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Clone repo
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Generate the snake files in './docs/'
         uses: Platane/snk@v4
@@ -40,6 +40,7 @@ jobs:
             docs/github-contribution-grid-snake.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Runs a single command using the runners shell
       - name: Show build status
         run: git status
@@ -53,4 +54,3 @@ jobs:
           commit_message: Update snake animations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
