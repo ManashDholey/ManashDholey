@@ -14,16 +14,22 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Fetch stats card
         run: |
           mkdir -p profile
-          curl -sf "https://github-readme-stats.vercel.app/api?username=ManashDholey&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" -o profile/stats.svg
+          curl -sSL --retry 3 --retry-delay 5 -w "HTTP %{http_code}\n" \
+            "https://github-readme-stats.vercel.app/api?username=ManashDholey&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" \
+            -o profile/stats.svg
+          head -c 200 profile/stats.svg
 
       - name: Fetch top languages card
         run: |
-          curl -sf "https://github-readme-stats.vercel.app/api/top-langs/?username=ManashDholey&count_private=true&hide=HTML&langs_count=10&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" -o profile/top-langs.svg
+          curl -sSL --retry 3 --retry-delay 5 -w "HTTP %{http_code}\n" \
+            "https://github-readme-stats.vercel.app/api/top-langs/?username=ManashDholey&count_private=true&hide=HTML&langs_count=10&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" \
+            -o profile/top-langs.svg
+          head -c 200 profile/top-langs.svg
 
       - name: Commit cards
         run: |
