@@ -50,6 +50,8 @@
   <img width="390" src="profile/stats.svg" alt="readme stats" />
   <br/>
   <img width="325" align="center" src="profile/top-langs.svg" alt="top langs" />
+  <!-- top-langs.svg is generated with count_private=true and langs_count=10
+       so smaller languages like Python have a better chance of showing -->
 </div>
 
 <br/><br/>
