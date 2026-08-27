@@ -5,7 +5,7 @@
 <h3 align="center">A passionate Software Engineer from India</h3>
 
 <div align="center">
-🌱 I’m currently learning <b>.NET 8</b> <br/>
+🌱 I’m currently learning <b>.NET 10</b> <br/>
 💬 Ask me about <b>ASP.NET, ASP.NET MVC, .NET 5/6/8/10, C#, SQL Server, Angular, REST API, Node.js, React, MySQL</b>... or anything <a href="https://github.com/ManashDholey/ManashDholey/issues">here</a>
 </div>
 <br/>
